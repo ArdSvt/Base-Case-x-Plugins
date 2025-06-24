@@ -60,7 +60,7 @@ const isMedia = /image|video|sticker|audio/.test(mime);
 const userTemp = (jid) => {
 return {
 jid: jid,
-name: await ard.getName(jid, true),
+name: m.pushName,
 register: true,
 money: 0,
 exp: 0,
