@@ -15,7 +15,6 @@ const path = require("path")
 const axios = require('axios')
 const cheerio = require('cheerio')
 const process = require('process');
-const moment = require("moment-timezone")
 const os = require('os');
 const { bytesToSize, checkBandwidth, formatSize, getBuffer, isUrl, jsonformat, nganuin, pickRandom, runtime, shorturl, formatp, color, getGroupAdmins } = require("./lib/myfunc");
 const { addExif } = require('./lib/exif')
