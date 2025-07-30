@@ -74,7 +74,7 @@ const jid = participants.find(_ => _.lid == m.sender)
 m.sender = jid.jid
 }
 if (m.isGroup && m.quoted && m.quoted.sender.endsWith("@lid")) {
-const jid = participants.find(_ => _.lid == m.quoted.sender)
+const jid =participants.find(_ => _.lid == m.quoted.sender)
 m.quoted.sender = jid.jid
 }
 if (m.isGroup && m.mentionedJid) {
