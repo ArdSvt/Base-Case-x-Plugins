@@ -1,6 +1,6 @@
 {
   "name": "Base bot Case × Plugins by ArdSvt",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Whatsapp bot base by ArdSvt",
   "scripts": {
     "start": "node index.js"
