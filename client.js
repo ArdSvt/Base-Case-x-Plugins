@@ -56,6 +56,9 @@ m?.quoted || m;
 const mime = ((quoted?.msg || quoted) || {}).mimetype || '';
 const qmsg = (quoted?.msg || quoted); 
 const isMedia = /image|video|sticker|audio/.test(mime);
+const groupMetadata = m?.isGroup ? await ard.groupMetadata(m?.chat).catch(e => {}) : {};
+if (m.isGroup && groupMetadata?.isCommunityAnnounce) return;
+const participants = m?.isGroup ? await groupMetadata?.participants || [] : [];
 const userTemp = (jid) => {
 return {
 jid: jid,
@@ -65,6 +68,24 @@ money: 0,
 exp: 0,
 level: 0
 }
+}
+if (m.isGroup && m.sender.endsWith("@lid")) {
+const jid = participants.find(_ => _.lid == m.sender)
+m.sender = jid.jid
+}
+if (m.isGroup && m.quoted && m.quoted.sender.endsWith("@lid")) {
+const jid =participants.find(_ => _.lid == m.quoted.sender)
+m.quoted.sender = jid.jid
+}
+if (m.isGroup && m.mentionedJid) {
+let jidList = []
+for (let lid in m.mentionedJid) {
+if (m.mentionedJid[lid].endsWith("@lid")) {
+const jid = participants.find(_ => _.lid == m.mentionedJid[lid])
+jidList.push(jid.jid)
+   }
+ }
+m.mentionedJid = jidList
 }
 const users = global.database.collection("users")
 let me
